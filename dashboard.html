@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard — SmartTask</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="dashboard">
+<script>try { var p = JSON.parse(localStorage.getItem('smarttask_profile_v1')); if (p && p.theme) document.documentElement.setAttribute('data-theme', p.theme); } catch(e){}</script>
+
+<div class="app-shell">
+  <div class="scrim" id="scrim"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="brand"><div class="brand-mark">S</div><span class="brand-name">SmartTask</span></div>
+    <ul class="nav-list">
+      <li><a class="nav-link" data-nav="dashboard" href="dashboard.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Dashboard</a></li>
+      <li><a class="nav-link" data-nav="tasks" href="tasks.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Tasks</a></li>
+      <li><a class="nav-link" data-nav="add" href="task-form.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Add task</a></li>
+      <li><a class="nav-link" data-nav="profile" href="profile.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 5-6 8-6s6.5 2 8 6"/></svg>Profile</a></li>
+    </ul>
+    <div class="sidebar-foot">
+      <button class="theme-toggle" id="themeToggle"><span>Light mode</span><span class="switch"></span></button>
+      <a href="index.html" class="nav-link" style="font-size:12.5px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 19l-7-7 7-7"/><path d="M3 12h18"/></svg>Back to landing</a>
+    </div>
+  </aside>
+
+  <div class="main-col">
+    <header class="topbar">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <button class="btn-icon menu-btn" id="menuBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+        <div>
+          <div class="eyebrow">Welcome back</div>
+          <h1>Dashboard</h1>
+        </div>
+      </div>
+      <a href="task-form.html" class="btn btn-primary btn-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" width="15" height="15"><path d="M12 5v14M5 12h14"/></svg>New task</a>
+    </header>
+
+    <main class="page-body">
+      <div class="stat-grid">
+        <div class="stat-card total"><div class="bar"></div><div class="num" id="statTotal">0</div><div class="label">Total tasks</div></div>
+        <div class="stat-card pending"><div class="bar"></div><div class="num" id="statPending">0</div><div class="label">Pending</div></div>
+        <div class="stat-card progress"><div class="bar"></div><div class="num" id="statProgress">0</div><div class="label">In progress</div></div>
+        <div class="stat-card done"><div class="bar"></div><div class="num" id="statDone">0</div><div class="label">Completed</div></div>
+      </div>
+
+      <div class="panel" style="margin-bottom:20px;">
+        <div class="panel-head"><h2>Due today</h2><a href="tasks.html" class="muted" style="font-size:12.5px;">View all tasks →</a></div>
+        <div id="todayList"></div>
+      </div>
+
+      <div class="dash-grid">
+        <div class="panel">
+          <div class="panel-head"><h2>Tasks by category</h2></div>
+          <div class="bar-chart" id="categoryChart"></div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h2>Upcoming</h2></div>
+          <div id="upcomingList"></div>
+        </div>
+      </div>
+    </main>
+
+    <nav class="bottom-nav">
+      <a data-nav="dashboard" href="dashboard.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Dashboard</a>
+      <a data-nav="tasks" href="tasks.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Tasks</a>
+      <a data-nav="add" href="task-form.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Add</a>
+      <a data-nav="profile" href="profile.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 5-6 8-6s6.5 2 8 6"/></svg>Profile</a>
+    </nav>
+  </div>
+</div>
+
+<script src="js/tasks.js"></script>
+<script src="js/app.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>
